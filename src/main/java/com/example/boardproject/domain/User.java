@@ -4,11 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.ArrayList;
 import java.util.Date;
-
-//import java.sql.Timestamp;
-//import java.util.Date;
-
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,7 +35,10 @@ public class User {
     @Column(insertable = false, updatable = false, columnDefinition = "date default CURRENT_TIMESTAMP")
     private Date createDate;
 
-//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-//    private List<Board> boardList = new ArrayList<>();
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Board> boardList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Comment> commentList = new ArrayList<>();
 
 }
