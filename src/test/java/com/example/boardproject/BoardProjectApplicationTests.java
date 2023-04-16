@@ -2,9 +2,11 @@ package com.example.boardproject;
 
 import com.example.boardproject.domain.Board;
 import com.example.boardproject.domain.Comment;
+import com.example.boardproject.domain.TestBoard;
 import com.example.boardproject.domain.User;
 import com.example.boardproject.persistence.BoardRepository;
 import com.example.boardproject.persistence.CommentRepository;
+import com.example.boardproject.persistence.TestBoardRepository;
 import com.example.boardproject.persistence.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ class BoardProjectApplicationTests {
 
     @Autowired
     CommentRepository commentRepo;
+
+    @Autowired
+    TestBoardRepository testRepo;
 
     @Test
     void contextLoads() {
@@ -77,22 +82,30 @@ class BoardProjectApplicationTests {
         User user = new User();
         Comment comment = new Comment();
 
-        user.setUserId("mappingtest3");
+        user.setUserId("mappingtest4");
         user.setUserName("mappingtest");
         user.setPassword("1234");
         user.setEmail("mapping@aaa.com");
         userRepo.save(user);
 
         board.setUser(user);
-        board.setTitle("mappingtest3");
-        board.setContent("mappingtest3");
+        board.setTitle("mappingtest4");
+        board.setContent("mappingtest4");
         boardRepo.save(board);
 
         comment.setUser(user);
         comment.setBoard(board);
-        comment.setContent("comment test");
+        comment.setContent("comment test4");
         commentRepo.save(comment);
 
+    }
+
+//    @Test
+    void dateTest() {
+
+        TestBoard tboard = new TestBoard();
+
+        testRepo.save(tboard);
     }
 
 }

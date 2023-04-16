@@ -2,7 +2,12 @@ package com.example.boardproject.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.cfg.annotations.reflection.internal.XMLContext;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Board {
+public class Board extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,12 +31,16 @@ public class Board {
     @Column(nullable = false)
     private String content;
 
-    @Column(insertable = false, updatable = false, columnDefinition = "date default CURRENT_TIMESTAMP")
-    private Date regiDate;
+//    @Column(insertable = false, updatable = false, columnDefinition = "date default CURRENT_TIMESTAMP")
+//    private Date regiDate;
 
-    private Date updateDate;
+    @CreatedDate
+    public LocalDateTime createdDate;
 
-    @Column(insertable = false, columnDefinition = "number default 0")
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
+
+    @Column(insertable = false, columnDefinition = "integer default 0")
     private Long cnt;
 
     @ManyToOne

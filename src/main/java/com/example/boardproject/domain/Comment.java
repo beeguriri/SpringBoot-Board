@@ -2,7 +2,10 @@ package com.example.boardproject.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -11,7 +14,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class Comment {
+public class Comment extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +23,12 @@ public class Comment {
 
     private String content;
 
-    @Column(insertable = false, updatable = false, columnDefinition = "date default CURRENT_TIMESTAMP")
-    private Date regiDate;
+//    @Column(insertable = false, updatable = false, columnDefinition = "date default CURRENT_TIMESTAMP")
+    @CreatedDate
+    public LocalDateTime createdDate;
 
-    private Date updateDate;
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
 
     @ManyToOne
     @JoinColumn(name="BOARD_SEQ")
