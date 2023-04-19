@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@ToString
+@ToString(exclude = "user")
 @Setter
 @Getter
 @AllArgsConstructor
@@ -44,10 +44,10 @@ public class Board extends BaseTimeEntity {
     private Long cnt;
 
     @ManyToOne
-    @JoinColumn(name="USER_SEQ")
+    @JoinColumn(name="USER_SEQ", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Comment> commentList = new ArrayList<>();
 
 }

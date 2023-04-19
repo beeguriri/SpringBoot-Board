@@ -78,26 +78,32 @@ class BoardProjectApplicationTests {
     @Test
     void mappingTest2() {
 
-        Board board = new Board();
         User user = new User();
-        Comment comment = new Comment();
 
-        user.setUserId("mappingtest4");
-        user.setUserName("mappingtest");
+        user.setUserId("tester2");
+        user.setUserName("tester2");
         user.setPassword("1234");
         user.setEmail("mapping@aaa.com");
         userRepo.save(user);
 
-        board.setUser(user);
-        board.setTitle("mappingtest4");
-        board.setContent("mappingtest4");
-        boardRepo.save(board);
+        for (int i = 1; i <= 3; i++) {
+            Board board = new Board();
 
-        comment.setUser(user);
-        comment.setBoard(board);
-        comment.setContent("comment test4");
-        commentRepo.save(comment);
+            board.setUser(user);
+            board.setTitle("board test "+i);
+            board.setContent("tester "+i);
+            boardRepo.save(board);
 
+            for (int j = 1; j <= 5; j++) {
+
+                Comment comment = new Comment();
+
+                comment.setUser(user);
+                comment.setBoard(board);
+                comment.setContent("comment test " + j);
+                commentRepo.save(comment);
+            }
+        }
     }
 
 //    @Test
