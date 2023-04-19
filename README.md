@@ -1,7 +1,11 @@
 # SpringBoot-Board
-+ `Springboot` &nbsp;`JPA` &nbsp; `MySQL` 이용한 게시판 만들기
-+ 하루에 한줄씩 치다보면 언젠가는 완성하겠지...
-
++ `Springboot` &nbsp;`JPA` &nbsp; `MySQL` 이용한 게시판 만들기 <br>
+:white_check_mark: domain 작성 <br>
+:white_check_mark: repository 작성 <br>
+:white_check_mark: service 작성 <br>
+  - [ ] controller 작성
+  - [ ] view 작성
+  - [ ] 배포
 <br>
 
 ## 목표
