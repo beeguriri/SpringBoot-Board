@@ -42,10 +42,10 @@ public class User extends BaseTimeEntity {
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Board> boardList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Comment> commentList = new ArrayList<>();
 
 }

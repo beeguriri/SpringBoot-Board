@@ -31,11 +31,11 @@ public class Comment extends BaseTimeEntity {
     private LocalDateTime modifiedDate;
 
     @ManyToOne
-    @JoinColumn(name="BOARD_SEQ")
+    @JoinColumn(name="BOARD_SEQ", nullable = false)
     private Board board;
 
     @ManyToOne
-    @JoinColumn(name="USER_SEQ")
+    @JoinColumn(name="USER_SEQ", nullable = false)
     private User user;
 
 }
