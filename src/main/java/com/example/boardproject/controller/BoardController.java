@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -32,6 +33,21 @@ public class BoardController {
         model.addAttribute("board", boardService.getBoard(board));
 
         return "getBoard";
+    }
+
+    @GetMapping("/updateBoard")
+    public String updateBoardView(Model model, Board board) {
+
+        model.addAttribute("updateBoard", boardService.getBoard(board));
+        return "updateBoard";
+    }
+
+    @PostMapping("/updateBoard")
+    public String updateBoard(Board board){
+
+        boardService.updateBoard(board);
+
+        return "redirect:boardList";
     }
 
 }
