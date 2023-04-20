@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글</title>
+</head>
+<body>
+  <table>
+    <tr>
+      <td th:text="제목"></td>
+      <td th:text="${board.title}"></td>
+    </tr>
+    <tr>
+      <td th:text="작성자"></td>
+      <td th:text="${board.user.userName}"></td>
+    </tr>
+  </table>
+</body>
+</html>
