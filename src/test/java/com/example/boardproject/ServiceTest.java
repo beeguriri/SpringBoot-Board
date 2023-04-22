@@ -33,18 +33,18 @@ public class ServiceTest {
     UserService userService;
 
 //    @Test
-    public void testGetBoardList() {
-
-        List<Board> list =  boardService.getBoardList();
-        for(Board b: list) {
-            System.out.print(b.getSeq()+ "\t");
-            System.out.print(b.getTitle()+ "\t");
-            System.out.print(b.getUser().getUserName()+ "\t");
-            System.out.print(b.getCreatedDate()+"\t");
-            System.out.print(b.getModifiedDate()+ "\t");
-            System.out.println(b.getCnt());
-        }
-    }
+//    public void testGetBoardList() {
+//
+//        List<Board> list =  boardService.getBoardList();
+//        for(Board b: list) {
+//            System.out.print(b.getSeq()+ "\t");
+//            System.out.print(b.getTitle()+ "\t");
+//            System.out.print(b.getUser().getUserName()+ "\t");
+//            System.out.print(b.getCreatedDate()+"\t");
+//            System.out.print(b.getModifiedDate()+ "\t");
+//            System.out.println(b.getCnt());
+//        }
+//    }
 
 //    @Test
     public void testGetBoard() {

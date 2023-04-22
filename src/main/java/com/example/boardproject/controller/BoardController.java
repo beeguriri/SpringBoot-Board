@@ -3,11 +3,12 @@ package com.example.boardproject.controller;
 import com.example.boardproject.domain.Board;
 import com.example.boardproject.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -17,11 +18,23 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
-    @GetMapping("/boardList")
-    public String getBoardList(Model model) {
+//    @GetMapping("/boardList")
+//    public String getBoardList(Model model) {
+//
+//        List<Board> boardList = boardService.getBoardList();
+//        model.addAttribute("boardList", boardList);
+//
+//        return "boardList";
+//
+//    }
 
-        List<Board> boardList = boardService.getBoardList();
-        model.addAttribute("boardList", boardList);
+    @GetMapping("/boardList")
+    public String getBoardList(Model model, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
+
+        Page<Board> boardList = boardService.getBoardList(page);
+
+        model.addAttribute("boardList", boardList.getContent());
+        model.addAttribute("totalPage", boardList.getTotalPages());
 
         return "boardList";
 
