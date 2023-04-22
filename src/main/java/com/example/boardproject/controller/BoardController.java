@@ -50,4 +50,18 @@ public class BoardController {
         return "redirect:boardList";
     }
 
+    @GetMapping("/insertBoard")
+    public String insertBoardView() {
+
+        return "insertBoard";
+    }
+
+    @PostMapping("/insertBoard")
+    public String insertBoard(Board board){
+
+        boardService.addBoard(board);
+
+        return "redirect:boardList";
+    }
+
 }
