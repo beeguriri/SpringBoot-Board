@@ -4,6 +4,11 @@
 :white_check_mark: repository 작성 <br>
 :white_check_mark: service 작성 <br>
   - [ ] controller 작성
+     + board Insert
+     + board Search
+     + user CRUD
+     + user 인증 관련 `Security`, `Oauth2` 공부하기
+     + comment CRUD
   - [ ] view 작성
   - [ ] 배포
 <br>
