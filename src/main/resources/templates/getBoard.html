@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글</title>
+</head>
+<body>
+  <table border="1">
+    <tr>
+      <td th:text="제목"></td>
+      <td th:text="${board.title}"></td>
+    </tr>
+    <tr>
+      <td th:text="작성자"></td>
+      <td th:text="${board.user.userName}"></td>
+    </tr>
+    <tr>
+      <td th:text="내용"></td>
+      <td th:text="${board.content}"></td>
+    </tr>
+    <tr>
+      <td th:text="등록일"></td>
+      <td th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+    </tr>
+    <tr>
+      <td th:text="수정일"></td>
+      <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
+    </tr>
+    <tr>
+      <td th:text="조회수"></td>
+      <td th:text="${board.cnt}"></td>
+    </tr>
+  </table>
+  <hr> <br>
+  <table>
+    <tr>
+      <td>댓글목록</td>
+    </tr>
+    <tr>
+
+    </tr>
+  </table>
+  <div align="center">
+    <button th:onclick="|location.href='@{/updateBoard(seq=${board.seq})}'|">수정</button>&nbsp;&nbsp;&nbsp;
+    <button th:onclick="|location.href='@{/deleteBoard(seq=${board.seq})}'|">삭제</button>&nbsp;&nbsp;&nbsp;
+    <button th:onclick="|location.href='@{/insertBoard}'|">새글등록</button>&nbsp;&nbsp;&nbsp;
+    <button th:onclick="|location.href='@{/boardList}'|">글목록</button>
+  </div>
+</body>
+</html>

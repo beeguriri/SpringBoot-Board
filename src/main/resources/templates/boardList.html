@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>boardList</title>
+</head>
+<body>
+    <h3>게시글 목록</h3>
+    <button th:onclick="|location.href='@{/insertBoard}'|">새글등록</button>
+    로그인하기버튼
+    <hr>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>번호</td> <td>제목</td> <td>작성자</td> <td>등록일</td> <td>수정일</td> <td>조회수</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="board, state : ${boardList}">
+                <td th:text="${state.count}">
+                <td><a th:href="@{/getBoard(seq=${board.seq})}" th:text="${board.title}"></a></td>
+                <td th:text="${board.user.userName}"></td>
+                <td th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}">
+                <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}">
+                <td th:text="${board.cnt}">
+            </tr>
+        </tbody>
+    </table>
+    <div class="page">
+        <ul>
+            <li th:each="page : ${#numbers.sequence(0, totalPage - 1)}">
+                <a th:href="@{/boardList(page=${pageStat.index})}" th:text="${pageStat.index + 1}"></a>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>
