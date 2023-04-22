@@ -5,32 +5,38 @@
     <title>게시글 수정</title>
 </head>
 <body>
-    수정화면
-    <table border="1">
-        <tr>
-            <td th:text="제목"></td>
-            <td><input type="text" th:field="*{updateBoard.title}"></td>
-        </tr>
-        <tr>
-            <td th:text="작성자"></td>
-            <td th:text="${updateBoard.user.userName}"></td>
-        </tr>
-        <tr>
-            <td th:text="내용"></td>
-            <td th:text="${updateBoard.content}"></td>
-        </tr>
-        <tr>
-            <td th:text="등록일"></td>
-            <td th:text="${#temporals.format(updateBoard.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
-        </tr>
-        <tr>
-            <td th:text="수정일"></td>
-            <td th:text="${#temporals.format(updateBoard.modifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
-        </tr>
-        <tr>
-            <td th:text="조회수"></td>
-            <td th:text="${updateBoard.cnt}"></td>
-        </tr>
-    </table>
+    <!--action : data 보낼 곳 -->
+    <form th:action="updateBoard" method="post">
+        <input type="hidden" th:field="*{updateBoard.seq}">
+        <table border="1">
+            <tr>
+                <td th:text="제목"></td>
+                <td><input type="text" th:field="*{updateBoard.title}"></td>
+            </tr>
+            <tr>
+                <td th:text="작성자"></td>
+                <td th:text="${updateBoard.user.userName}"></td>
+            </tr>
+            <tr>
+                <td th:text="내용"></td>
+                <td><textarea id="content" name="content" th:text="${updateBoard.content}" rows="7" cols="50"></textarea></td>
+            </tr>
+            <tr>
+                <td th:text="등록일"></td>
+                <td th:text="${#temporals.format(updateBoard.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+            </tr>
+            <tr>
+                <td th:text="수정일"></td>
+                <td th:text="${#temporals.format(updateBoard.modifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
+            </tr>
+            <tr>
+                <td th:text="조회수"></td>
+                <td th:text="${updateBoard.cnt}"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="게시글 수정" /></td>
+            </tr>
+        </table>
+    </form>
 </body>
 </html>
