@@ -36,13 +36,16 @@ class BoardProjectApplicationTests {
 //    @Test
     void userInsertTest(){
 
-        User user = new User();
+        for(int i=3; i<=10; i++) {
+            User user = new User();
 
-        user.setUserId("testUser2");
-        user.setUserName("tester");
-        user.setPassword("1234");
-        user.setEmail("aaa@bbb.com");
-        userRepo.save(user);
+            user.setUserId("testUser" + i);
+            user.setUserName("테스트입력");
+            user.setPassword("1234");
+            user.setEmail("aaa@bbb.com");
+
+            userRepo.save(user);
+        }
 
     }
 
@@ -75,7 +78,7 @@ class BoardProjectApplicationTests {
 
     }
 
-    @Test
+//    @Test
     void mappingTest2() {
 
         User user = new User();
@@ -112,6 +115,27 @@ class BoardProjectApplicationTests {
         TestBoard tboard = new TestBoard();
 
         testRepo.save(tboard);
+    }
+
+    @Test
+    void dummyInsert2() {
+
+        for(long i=4; i<=10; i+=2) {
+
+            User user = userRepo.findById(i).get();
+
+            for (int j=1; j<=10; j++) {
+
+                Board board = new Board();
+
+                board.setUser(user);
+                board.setTitle("dummy 입력" + j);
+                board.setContent("dummy data를 입렬하고 있습니다..." + j);
+
+                boardRepo.save(board);
+            }
+        }
+
     }
 
 }
