@@ -42,8 +42,8 @@
   </table>
   <div align="center">
     <button th:onclick="|location.href='@{/updateBoard(seq=${board.seq})}'|">수정</button>&nbsp;&nbsp;&nbsp;
-    <button th:href="@{/deleteBoard(seq=${board.seq})}">삭제</button>&nbsp;&nbsp;&nbsp;
-    <button th:href="@{/insertBoard}">새글등록</button>&nbsp;&nbsp;&nbsp;
+    <button th:onclick="|location.href='@{/deleteBoard(seq=${board.seq})}'|">삭제</button>&nbsp;&nbsp;&nbsp;
+    <button th:onclick="|location.href='@{/insertBoard}'|">새글등록</button>&nbsp;&nbsp;&nbsp;
     <button th:onclick="|location.href='@{/boardList}'|">글목록</button>
   </div>
 </body>

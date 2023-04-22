@@ -93,4 +93,12 @@ public class ServiceTest {
 
     }
 
+//    @Test
+    public  void testDeleteBoard(){
+
+        Board board = boardRepo.findById(2L).get();
+        boardService.deleteBoard(board);
+
+    }
+
 }
