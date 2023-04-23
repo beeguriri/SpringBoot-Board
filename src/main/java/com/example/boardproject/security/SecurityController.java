@@ -11,4 +11,9 @@ public class SecurityController {
 
     }
 
+    @GetMapping("/join")
+    public void join(){
+
+    }
+
 }
