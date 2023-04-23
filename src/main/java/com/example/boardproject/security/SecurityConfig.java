@@ -21,6 +21,10 @@ public class SecurityConfig {
                         .anyRequest().authenticated()	// 어떠한 요청이라도 인증필요
                 )
                 .formLogin(login -> login	// form 방식 로그인 사용
+                        .loginPage("/login")    //로그인페이지
+                        .loginProcessingUrl("/loginProcess") //submit 페이지
+                        .usernameParameter("userId")
+                        .passwordParameter("password")
                         .defaultSuccessUrl("/boardList", true)	// 성공 시 boardList로
                         .permitAll()
                 )
