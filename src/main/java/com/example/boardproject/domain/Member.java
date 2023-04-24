@@ -2,61 +2,55 @@ package com.example.boardproject.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@Builder
 @Setter
 @Getter
 @Entity
-public class User extends BaseTimeEntity {
+public class Member extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="USER_SEQ")
+    @Column(name="MEMBER_SEQ")
     private Long seq;
 
     @Column(updatable = false, nullable = false, unique = true)
-    private String userId;
+    private String memberId;
 
     @Column(nullable = false)
-    private String userName;
+    private String nickname;
 
     @Column(nullable = false)
     private String password;
 
-    private String userRole;
+    private String role;
 
     private String email;
 
-//    @Column(insertable = false, updatable = false, columnDefinition = "date default CURRENT_TIMESTAMP")
     @CreatedDate
     public LocalDateTime createdDate;
 
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Board> boardList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> commentList = new ArrayList<>();
 
-
-    private User(Long seq, String userId, String password, String userRole) {
-        this.seq = seq;
-        this.userId = userId;
+    private Member(String memberId, String password, String role) {
+        this.memberId = memberId;
         this.password = password;
-        this.userRole = userRole;
+        this.role = role;
     }
 
 }
