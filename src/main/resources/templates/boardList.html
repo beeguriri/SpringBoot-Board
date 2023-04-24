@@ -7,7 +7,7 @@
 <body>
     <h3>게시글 목록</h3>
     <button th:onclick="|location.href='@{/insertBoard}'|">새글등록</button>
-    로그인하기버튼
+    <button th:onclick="|location.href='@{/logout}'|">로그아웃</button>
     <hr>
     <table border="1">
         <thead>
@@ -19,7 +19,7 @@
             <tr th:each="board, state : ${boardList}">
                 <td th:text="${state.count}">
                 <td><a th:href="@{/getBoard(seq=${board.seq})}" th:text="${board.title}"></a></td>
-                <td th:text="${board.user.userName}"></td>
+                <td th:text="${board.member.nickname}"></td>
                 <td th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}">
                 <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}">
                 <td th:text="${board.cnt}">

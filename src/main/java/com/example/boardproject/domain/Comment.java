@@ -6,11 +6,10 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"board", "user"})
+@ToString(exclude = {"board", "member"})
 @Getter
 @Setter
 @Entity
@@ -35,7 +34,7 @@ public class Comment extends BaseTimeEntity {
     private Board board;
 
     @ManyToOne
-    @JoinColumn(name="USER_SEQ", nullable = false)
-    private User user;
+    @JoinColumn(name="MEMBER_SEQ", nullable = false)
+    private Member member;
 
 }

@@ -16,4 +16,9 @@ public class SecurityController {
 
     }
 
+    @GetMapping("/logout")
+    public void logout(){
+
+    }
+
 }
