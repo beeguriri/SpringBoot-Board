@@ -39,4 +39,5 @@ public class SecurityConfig {
     PasswordEncoder passwordEncoder() {
         return new SimplePasswordEncoder();
     }
+
 }
