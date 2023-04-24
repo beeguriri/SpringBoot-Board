@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -33,6 +34,8 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private String password;
 
+    private String userRole;
+
     private String email;
 
 //    @Column(insertable = false, updatable = false, columnDefinition = "date default CURRENT_TIMESTAMP")
@@ -47,5 +50,13 @@ public class User extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> commentList = new ArrayList<>();
+
+
+    private User(Long seq, String userId, String password, String userRole) {
+        this.seq = seq;
+        this.userId = userId;
+        this.password = password;
+        this.userRole = userRole;
+    }
 
 }
