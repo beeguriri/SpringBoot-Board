@@ -73,15 +73,18 @@ public class BoardController {
     }
 
     @GetMapping("/insertBoard")
-    public String insertBoardView() {
+    public String insertBoardView(@AuthenticationPrincipal User user, Model model) {
+
+        Member member = memberRepo.findByMemberId(user.getUsername()).get();
+        model.addAttribute("member", member);
 
         return "insertBoard";
     }
 
     @PostMapping("/insertBoard")
-    public String insertBoard(Board board){
+    public String insertBoard(@AuthenticationPrincipal User user, Board board){
 
-        boardService.addBoard(board);
+        boardService.addBoard(user.getUsername(), board);
 
         return "redirect:boardList";
     }
