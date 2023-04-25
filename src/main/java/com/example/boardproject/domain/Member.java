@@ -2,6 +2,7 @@ package com.example.boardproject.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@DynamicInsert
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -31,8 +33,10 @@ public class Member extends BaseTimeEntity{
     @Column(nullable = false)
     private String password;
 
+    @Column(insertable = false, columnDefinition = "varchar(255) default 'User'")
     private String role;
 
+    @Column(nullable = false)
     private String email;
 
     @CreatedDate
