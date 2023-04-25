@@ -8,6 +8,7 @@
     <h3>게시글 목록</h3>
     <button th:onclick="|location.href='@{/insertBoard}'|">새글등록</button>
     <button th:onclick="|location.href='@{/logout}'|">로그아웃</button>
+    <h5 align="center"><font color="blue" th:text="${loginId}"></font>님 게시판 입장을 환영합니다.</h5>
     <hr>
     <table border="1">
         <thead>

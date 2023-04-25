@@ -1,22 +1,27 @@
 package com.example.boardproject.controller;
 
 import com.example.boardproject.domain.Board;
+import com.example.boardproject.domain.Member;
+import com.example.boardproject.persistence.MemberRepository;
 import com.example.boardproject.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @Controller
 public class BoardController {
 
     @Autowired
     BoardService boardService;
+
+    @Autowired
+    MemberRepository memberRepo;
 
 //    @GetMapping("/boardList")
 //    public String getBoardList(Model model) {
@@ -29,12 +34,16 @@ public class BoardController {
 //    }
 
     @GetMapping("/boardList")
-    public String getBoardList(Model model, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
+    public String getBoardList(@AuthenticationPrincipal User user, Model model, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
 
         Page<Board> boardList = boardService.getBoardList(page);
 
         model.addAttribute("boardList", boardList.getContent());
         model.addAttribute("totalPage", boardList.getTotalPages());
+
+        Member member = memberRepo.findByMemberId(user.getUsername()).get();
+        model.addAttribute("loginId", member.getNickname());
+        model.addAttribute("loginRoles", user.getAuthorities());
 
         return "boardList";
 
@@ -64,15 +73,18 @@ public class BoardController {
     }
 
     @GetMapping("/insertBoard")
-    public String insertBoardView() {
+    public String insertBoardView(@AuthenticationPrincipal User user, Model model) {
+
+        Member member = memberRepo.findByMemberId(user.getUsername()).get();
+        model.addAttribute("member", member);
 
         return "insertBoard";
     }
 
     @PostMapping("/insertBoard")
-    public String insertBoard(Board board){
+    public String insertBoard(@AuthenticationPrincipal User user, Board board){
 
-        boardService.addBoard(board);
+        boardService.addBoard(user.getUsername(), board);
 
         return "redirect:boardList";
     }

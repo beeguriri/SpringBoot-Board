@@ -1,7 +1,9 @@
 package com.example.boardproject.service;
 
 import com.example.boardproject.domain.Board;
+import com.example.boardproject.domain.Member;
 import com.example.boardproject.persistence.BoardRepository;
+import com.example.boardproject.persistence.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +18,9 @@ public class BoardService {
 
     @Autowired
     BoardRepository boardRepo;
+
+    @Autowired
+    MemberRepository memberRepo;
 
 //    public List<Board> getBoardList() {
 //
@@ -35,10 +40,11 @@ public class BoardService {
         return boardRepo.findById(board.getSeq()).get();
     }
 
-    public void addBoard(Board board) {
+    public void addBoard(String userId, Board board) {
 
+        Member member = memberRepo.findByMemberId(userId).get();
+        board.setMember(member);
         boardRepo.save(board);
-
     }
 
     public void updateBoard(Board board) {
