@@ -11,9 +11,9 @@ public class MemberService {
     @Autowired
     MemberRepository memberRepo;
 
-    public Member getMember(Long seq) {
+    public Member getMember(Member member) {
 
-        return memberRepo.findById(seq).get();
+        return memberRepo.findById(member.getSeq()).get();
     }
 
     public void addMember(Member member) {

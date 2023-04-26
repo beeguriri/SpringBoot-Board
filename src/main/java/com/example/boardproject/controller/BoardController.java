@@ -42,6 +42,7 @@ public class BoardController {
         model.addAttribute("totalPage", boardList.getTotalPages());
 
         Member member = memberRepo.findByMemberId(user.getUsername()).get();
+        model.addAttribute("member", member);
         model.addAttribute("loginId", member.getNickname());
         model.addAttribute("loginRoles", user.getAuthorities());
 
