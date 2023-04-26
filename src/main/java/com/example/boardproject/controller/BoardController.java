@@ -42,6 +42,7 @@ public class BoardController {
         model.addAttribute("totalPage", boardList.getTotalPages());
 
         Member member = memberRepo.findByMemberId(user.getUsername()).get();
+        model.addAttribute("member", member);
         model.addAttribute("loginId", member.getNickname());
         model.addAttribute("loginRoles", user.getAuthorities());
 
@@ -50,9 +51,12 @@ public class BoardController {
     }
 
     @GetMapping("/getBoard")
-    public String getBoard(Model model, Board board){
+    public String getBoard(@AuthenticationPrincipal User user, Model model, Board board){
 
         model.addAttribute("board", boardService.getBoard(board));
+
+        model.addAttribute("memberID", user.getUsername());
+        model.addAttribute("memberRoles", user.getAuthorities());
 
         return "getBoard";
     }

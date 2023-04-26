@@ -43,7 +43,7 @@ class BoardProjectApplicationTests {
             member.setNickname("테스터"+i);
             member.setPassword("1234");
             member.setEmail("aaa@bbb.com");
-            member.setRole("User");
+//            member.setRole("User");
 
             memberRepo.save(member);
         }
@@ -51,11 +51,11 @@ class BoardProjectApplicationTests {
     }
 
     @Test
-    void memberInsertTest2(){
+    void adminInsertTest(){
 
         Member member = new Member();
 
-        member.setMemberId("testAdmin");
+        member.setMemberId("testadmin");
         member.setNickname("관리자");
         member.setPassword("1234");
         member.setEmail("aaa@bbb.com");

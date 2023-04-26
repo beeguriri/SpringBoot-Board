@@ -22,7 +22,7 @@ public class MappingTest2 {
     @Autowired
     CommentRepository commentRepo;
 
-//    @Test
+    @Test
     void dummyInsert() {
 
         for(long i=1; i<=3; i++) {
@@ -34,7 +34,7 @@ public class MappingTest2 {
                 Board board = new Board();
 
                 board.setMember(member);
-                board.setTitle("추가추가" + j);
+                board.setTitle("추가하자" + j);
                 board.setContent("dummy data를 입력하고 있습니다..." + j);
 
                 boardRepo.save(board);
@@ -43,7 +43,7 @@ public class MappingTest2 {
 
     }
 
-    @Test
+//    @Test
     void dummyInsert2() {
 
         for(long i=1; i<=3; i++) {
