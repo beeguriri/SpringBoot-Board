@@ -1,9 +1,6 @@
 package com.example.boardproject.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -27,4 +24,7 @@ public class TestBoard extends BaseTimeEntity {
 
     @LastModifiedDate
     private LocalDateTime modifiedDate;
+
+    @Column(insertable = false, columnDefinition = "varchar(255) default 'User'")
+    private String role;
 }

@@ -33,7 +33,7 @@ public class Member extends BaseTimeEntity{
     @Column(nullable = false)
     private String password;
 
-    @Column(insertable = false, columnDefinition = "varchar(255) default 'User'")
+    @Column(columnDefinition = "varchar(255) default 'User'")
     private String role;
 
     @Column(nullable = false)
