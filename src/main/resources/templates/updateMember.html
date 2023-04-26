@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <form th:action="updateMember" method="post">
+  <input type="hidden" th:field="*{updateMember.seq}">
+    <table>
+      <tr>
+        <td th:text="아이디"></td>
+        <td th:text="${updateMember.memberId}"></td>
+      </tr>
+      <tr>
+        <td th:text="비밀번호"></td>
+        <td><input name="password" type="password"></td>
+      </tr>
+      <tr>
+        <td th:text="닉네임"></td>
+        <td><input name="nickname" type="text" th:field="*{updateMember.nickname}"></td>
+      </tr>
+      <tr>
+        <td th:text="이메일주소"></td>
+        <td><input name="email" type="text" th:field="*{updateMember.email}"></td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="회원정보 수정" /></td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>
