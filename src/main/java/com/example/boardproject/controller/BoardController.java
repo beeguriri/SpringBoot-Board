@@ -50,9 +50,12 @@ public class BoardController {
     }
 
     @GetMapping("/getBoard")
-    public String getBoard(Model model, Board board){
+    public String getBoard(@AuthenticationPrincipal User user, Model model, Board board){
 
         model.addAttribute("board", boardService.getBoard(board));
+
+        model.addAttribute("memberID", user.getUsername());
+        model.addAttribute("memberRoles", user.getAuthorities());
 
         return "getBoard";
     }
