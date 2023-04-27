@@ -1,6 +1,7 @@
 package com.example.boardproject.controller;
 
 import com.example.boardproject.domain.Board;
+import com.example.boardproject.domain.Comment;
 import com.example.boardproject.domain.Member;
 import com.example.boardproject.persistence.MemberRepository;
 import com.example.boardproject.service.BoardService;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class BoardController {
@@ -53,10 +56,15 @@ public class BoardController {
     @GetMapping("/getBoard")
     public String getBoard(@AuthenticationPrincipal User user, Model model, Board board){
 
-        model.addAttribute("board", boardService.getBoard(board));
+        Board getBoard = boardService.getBoard(board);
+        model.addAttribute("board", getBoard);
 
         model.addAttribute("memberID", user.getUsername());
         model.addAttribute("memberRoles", user.getAuthorities());
+
+        List<Comment> commentList = getBoard.getCommentList();
+        if(commentList != null)
+            model.addAttribute("commentList", commentList);
 
         return "getBoard";
     }

@@ -32,12 +32,20 @@
     </tr>
   </table>
   <hr> <br>
-  <table>
+  <table border="1">
     <tr>
-      <td>댓글목록</td>
+      <td th:span="6">댓글목록</td>
     </tr>
-    <tr>
-
+    <tr th:if="${commentList.size()!=0}" th:each="comment, state : ${commentList}">
+      <td th:text="${state.count}">
+      <td th:text="${comment.member.nickname}"></td>
+      <td th:text="${comment.content}"></td>
+      <td th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+      <td><button>수정</button></td>
+      <td><button>삭제</button></td>
+    </tr>
+    <tr th:if="${commentList.size()==0}">
+      <td>~~등록 된 댓글이 없습니다~~</td>
     </tr>
   </table>
   <div align="center">
