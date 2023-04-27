@@ -32,6 +32,8 @@
     </tr>
   </table>
   <hr> <br>
+
+  <!-- Comment List -->
   <table border="1">
     <tr>
       <td>Comments</td>
@@ -49,6 +51,15 @@
       <td>~~등록 된 댓글이 없습니다~~</td>
     </tr>
   </table>
+
+  <!-- Comment 입력 -->
+  <form th:action="addComment" method="post">
+    <input name="BOARD_SEQ" type="hidden" th:field="*{board.seq}">
+    <textarea name="content" rows="3" cols="50"></textarea>
+    <input type="submit" value="댓글 등록" />
+  </form>
+
+  <!-- 하부 버튼 -->
   <div align="center">
     <button th:if="${memberID == board.member.memberId}" th:onclick="|location.href='@{/updateBoard(seq=${board.seq})}'|">수정</button>&nbsp;&nbsp;&nbsp;
     <button th:if="${memberID == board.member.memberId}" th:onclick="|location.href='@{/deleteBoard(seq=${board.seq})}'|">삭제</button>&nbsp;&nbsp;&nbsp;
