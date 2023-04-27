@@ -34,7 +34,8 @@
   <hr> <br>
   <table border="1">
     <tr>
-      <td th:span="6">댓글목록</td>
+      <td>Comments</td>
+      <td th:text="${commentList.size()}"></td>
     </tr>
     <tr th:if="${commentList.size()!=0}" th:each="comment, state : ${commentList}">
       <td th:text="${state.count}">
