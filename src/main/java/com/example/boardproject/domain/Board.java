@@ -2,14 +2,11 @@ package com.example.boardproject.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.cfg.annotations.reflection.internal.XMLContext;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @ToString(exclude = "member")

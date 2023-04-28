@@ -37,9 +37,16 @@ public class BoardController {
 //    }
 
     @GetMapping("/boardList")
-    public String getBoardList(@AuthenticationPrincipal User user, Model model, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
+    public String getBoardList(@AuthenticationPrincipal User user, Model model,
+                               @RequestParam(required = false, defaultValue = "0", value = "page") int page,
+                                String keyword) {
 
-        Page<Board> boardList = boardService.getBoardList(page);
+        Page<Board> boardList;
+
+        if(keyword==null)
+            boardList = boardService.getBoardList(page);
+        else
+            boardList = boardService.findByTitle(keyword, page);
 
         model.addAttribute("boardList", boardList.getContent());
         model.addAttribute("totalPage", boardList.getTotalPages());
@@ -57,6 +64,9 @@ public class BoardController {
     public String getBoard(@AuthenticationPrincipal User user, Model model, Board board){
 
         Board getBoard = boardService.getBoard(board);
+
+        boardService.updateVeiw(getBoard.getSeq());
+
         model.addAttribute("board", getBoard);
 
         model.addAttribute("memberID", user.getUsername());
