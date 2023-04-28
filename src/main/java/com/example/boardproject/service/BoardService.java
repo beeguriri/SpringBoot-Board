@@ -4,6 +4,7 @@ import com.example.boardproject.domain.Board;
 import com.example.boardproject.domain.Member;
 import com.example.boardproject.persistence.BoardRepository;
 import com.example.boardproject.persistence.MemberRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,7 +31,7 @@ public class BoardService {
 
     public Page<Board> getBoardList(int page) {
 
-        Pageable paging = PageRequest.of(page,15, Sort.by(Sort.Direction.DESC, "seq"));
+        Pageable paging = PageRequest.of(page, 15, Sort.by(Sort.Direction.DESC, "seq"));
         return boardRepo.findAll(paging);
 
     }
@@ -60,6 +61,12 @@ public class BoardService {
     public void deleteBoard(Board board) {
 
         boardRepo.deleteById(board.getSeq());
+    }
+
+    @Transactional
+    public int updateVeiw(Long seq) {
+
+        return boardRepo.updateView(seq);
     }
 
 }

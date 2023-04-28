@@ -57,6 +57,9 @@ public class BoardController {
     public String getBoard(@AuthenticationPrincipal User user, Model model, Board board){
 
         Board getBoard = boardService.getBoard(board);
+
+        boardService.updateVeiw(getBoard.getSeq());
+
         model.addAttribute("board", getBoard);
 
         model.addAttribute("memberID", user.getUsername());
