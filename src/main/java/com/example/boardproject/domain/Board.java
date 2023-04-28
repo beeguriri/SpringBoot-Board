@@ -47,7 +47,7 @@ public class Board extends BaseTimeEntity {
     @JoinColumn(name="MEMBER_SEQ", nullable = false)
     private Member member;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER) //cascade = CascadeType.ALL
     private List<Comment> commentList = new ArrayList<>();
 
 }

@@ -32,14 +32,34 @@
     </tr>
   </table>
   <hr> <br>
-  <table>
-    <tr>
-      <td>댓글목록</td>
-    </tr>
-    <tr>
 
+  <!-- Comment List -->
+  <table border="1">
+    <tr>
+      <td>Comments</td>
+      <td th:text="${commentList.size()}"></td>
+    </tr>
+    <tr th:if="${commentList.size()!=0}" th:each="comment, state : ${commentList}">
+      <td th:text="${state.count}">
+      <td th:text="${comment.content}"></td>
+      <td th:text="${comment.member.nickname}"></td>
+      <td th:text="${#temporals.format(comment.modifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
+      <td><button th:if="${memberID == comment.member.memberId}" th:onclick="|location.href='@{/updateComment(seq=${comment.seq})}'|">수정</button></td>
+      <td><button th:if="${memberID == comment.member.memberId}" th:onclick="|location.href='@{/deleteComment(seq=${comment.seq})}'|">삭제</button></td>
+    </tr>
+    <tr th:if="${commentList.size()==0}">
+      <td>~~등록 된 댓글이 없습니다~~</td>
     </tr>
   </table>
+
+  <!-- Comment 입력 -->
+  <form th:action="addComment" method="post">
+    <input name="BOARD_SEQ" type="hidden" th:field="*{board.seq}">
+    <textarea name="content" rows="3" cols="50"></textarea>
+    <input type="submit" value="댓글 등록" />
+  </form>
+
+  <!-- 하부 버튼 -->
   <div align="center">
     <button th:if="${memberID == board.member.memberId}" th:onclick="|location.href='@{/updateBoard(seq=${board.seq})}'|">수정</button>&nbsp;&nbsp;&nbsp;
     <button th:if="${memberID == board.member.memberId}" th:onclick="|location.href='@{/deleteBoard(seq=${board.seq})}'|">삭제</button>&nbsp;&nbsp;&nbsp;
