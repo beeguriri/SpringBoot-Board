@@ -31,7 +31,7 @@ public class BoardService {
 
     public Page<Board> getBoardList(int page) {
 
-        Pageable paging = PageRequest.of(page, 15, Sort.by(Sort.Direction.DESC, "seq"));
+        Pageable paging = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "seq"));
         return boardRepo.findAll(paging);
 
     }
@@ -71,7 +71,7 @@ public class BoardService {
 
     public Page<Board> findByTitle(String keyword, int page){
 
-        Pageable paging = PageRequest.of(page, 15, Sort.by(Sort.Direction.DESC, "seq"));
+        Pageable paging = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "seq"));
 
         return boardRepo.findByTitleContaining(keyword, paging);
     }
