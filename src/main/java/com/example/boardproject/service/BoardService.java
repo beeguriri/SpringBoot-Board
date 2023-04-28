@@ -69,4 +69,11 @@ public class BoardService {
         return boardRepo.updateView(seq);
     }
 
+    public Page<Board> findByTitle(String keyword, int page){
+
+        Pageable paging = PageRequest.of(page, 15, Sort.by(Sort.Direction.DESC, "seq"));
+
+        return boardRepo.findByTitleContaining(keyword, paging);
+    }
+
 }

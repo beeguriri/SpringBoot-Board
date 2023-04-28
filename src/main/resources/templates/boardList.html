@@ -28,12 +28,17 @@
             </tr>
         </tbody>
     </table>
-    <div class="page">
-        <ul>
-            <li th:each="page : ${#numbers.sequence(0, totalPage - 1)}">
-                <a th:href="@{/boardList(page=${pageStat.index})}" th:text="${pageStat.index + 1}"></a>
-            </li>
-        </ul>
+    <div class="page" align="center">
+        <span th:each="page : ${#numbers.sequence(0, totalPage - 1)}">
+            <a th:href="@{/boardList(page=${pageStat.index})}" th:text="${pageStat.index + 1}"></a>
+        </span>
+    </div>
+    <div class="search">
+        <form th:action="boardList" method="get">
+            <input type="text" name="keyword">
+            <input type="submit" value="검색">
+            <button th:onclick="|location.href='@{/boardList}'|">글목록</button>
+        </form>
     </div>
 
 </body>
