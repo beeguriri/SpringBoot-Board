@@ -29,15 +29,21 @@ public class CommentService {
 
     }
 
+    public Comment getComment(Comment comment) {
+        return commentRepo.findById(comment.getSeq()).get();
+    }
+
     public void addComment(String userId, Long boardSeq, Comment comment) {
 
         System.out.println("service : " + boardSeq);
 
         Member member = memberRepo.findByMemberId(userId).get();
         Board getBoard = boardRepo.findById(boardSeq).get();
-        comment.setMember(member);
-        comment.setBoard(getBoard);
-        commentRepo.save(comment);
+        Comment newcomment = new Comment();
+        newcomment.setMember(member);
+        newcomment.setBoard(getBoard);
+        newcomment.setContent(comment.getContent());
+        commentRepo.save(newcomment);
 
     }
 
