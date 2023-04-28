@@ -44,7 +44,7 @@
       <td th:text="${comment.content}"></td>
       <td th:text="${comment.member.nickname}"></td>
       <td th:text="${#temporals.format(comment.modifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
-      <td><button th:if="${memberID == comment.member.memberId}">수정</button></td>
+      <td><button th:if="${memberID == comment.member.memberId}" th:onclick="|location.href='@{/updateComment(seq=${comment.seq})}'|">수정</button></td>
       <td><button th:if="${memberID == comment.member.memberId}" th:onclick="|location.href='@{/deleteComment(seq=${comment.seq})}'|">삭제</button></td>
     </tr>
     <tr th:if="${commentList.size()==0}">

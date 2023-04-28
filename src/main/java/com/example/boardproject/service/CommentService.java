@@ -50,6 +50,7 @@ public class CommentService {
     public void updateComment(Comment comment) {
 
         Comment updateComment = commentRepo.findById(comment.getSeq()).get();
+
         updateComment.setContent(comment.getContent());
 
         commentRepo.save(updateComment);

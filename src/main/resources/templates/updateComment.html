@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  댓글 수정 화면
+  <form th:action="updateComment" method="post">
+      <input type="hidden" th:field="*{updateComment.seq}">
+      <textarea name="content" rows="3" cols="50" th:text="${updateComment.content}"></textarea>
+      <input type="submit" value="댓글 수정" />
+  </form>
+</body>
+</html>
