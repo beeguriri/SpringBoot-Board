@@ -11,7 +11,7 @@
 <br>
 
 ## 작업환경
-+ IDEA: IntelliJ
++ IDE: IntelliJ
 + Java: 17
 + Gradle 7.6.1
 + Spring Boot 3.0.5
