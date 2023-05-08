@@ -6,7 +6,7 @@
 :white_check_mark: `AuditingEntityListener`로 입력, 수정시간 자동 반영 <br>
 :white_check_mark: `pagable` 이용한 페이징 <br>
 :white_check_mark: `security` 이용한 사용자 로그인 하기 <br>
-:white_check_mark: `thymeleaf` 이용한 Veiw 작성 <br>
+:white_check_mark: `thymeleaf` 이용한 View 작성 <br>
 
 <br>
 
